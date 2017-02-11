@@ -1,0 +1,63 @@
+
+4.      Напишете метод, който намира най-дългата подредица от 
+равни числа в даден List<int> и връща като резултат нов List<int>
+ със тази подредица. Напишете програма, която проверява дали този метод работи коректно.
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Zad {
+
+	static ArrayList<Integer> al = new ArrayList<Integer>();
+	
+	public  static void main(String[] args) {
+		
+		al = list();
+		ArrayList<Integer> arli = new ArrayList<Integer>();
+		int count = 1;
+		int bestCount = 0;
+		int start = 0;
+		int bestStart = 0;
+		for(int i = 0; i < al.size()-1; i++) {
+            if(al.get(i) == al.get(i+1)) { 
+            	start = i;
+            	count++;
+            	if(count > bestCount) {
+            		bestCount = count;
+            		bestStart = start;
+            	}
+            }
+            else {
+            	count = 1;
+            }
+		}
+         for (int y = 0; y < bestCount; y++)  {
+        	 arli.add(al.get(bestStart));
+         }
+         
+         System.out.println(arli); 
+                
+		}	
+			
+	/**
+	 * list() -
+	 * -прочита от конзолата поредица от цели положителни числа,
+	 *поредицата спира когато се въведе празен ред 
+	 */
+	
+		@SuppressWarnings("resource")
+		private static ArrayList<Integer> list() {
+			Scanner scan = new Scanner(System.in);
+			String line = scan.nextLine();
+			if (line.equals(" ") ) {
+				scan.close();
+			}
+			else {
+				al.add(Integer.parseInt(line));
+				return list();
+			}
+			return al;
+		}
+
+}
