@@ -1,0 +1,51 @@
+package zad;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+   public class Zad {
+	   
+	   private static ArrayList<Integer> al = new ArrayList<Integer>();
+	   
+	   public static void main(String[] args) {
+		   
+		   al = list();
+		   ArrayList<Integer> arli = new ArrayList<Integer>();
+		   for (int a = 0; a < 1001; a++) {
+			   arli.add(a);
+		   }
+
+		   int count = 0;
+		   for(int i = 0; i < arli.size(); i++) {
+			   for(int y = 0; y < al.size(); y++) {
+				   if (arli.get(i) == al.get(y)) {
+				   count++;
+				   }
+			   }
+			   if (count != 0) { 
+			   System.out.printf("%d a %d пъти%n", al.get(i), count);
+			   count = 0;		   
+			   }
+		   }
+	   }
+	   
+	   
+	   @SuppressWarnings("resource")
+	private static ArrayList<Integer> list() {
+		   
+		   Scanner scan = new Scanner(System.in);
+			String line = scan.nextLine();
+			if (line.equals(" ")) {
+				scan.close();
+			}
+			else {
+				al.add(Integer.parseInt(line));
+				return list();
+			}
+		   return al;
+	   }
+	   
+   }
+
+
