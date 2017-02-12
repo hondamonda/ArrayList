@@ -1,0 +1,54 @@
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Zad {
+
+	private static ArrayList<Integer> al = new ArrayList<Integer>();
+	
+	public  static void main(String[] args) {
+		
+		al = list();
+		ArrayList<Integer> arli = new ArrayList<Integer>();
+		
+		int count = 0;
+		for (int i = 0; i < al.size(); i++) {
+			for(int y : al) {
+				if(al.get(i) == al.get(y)) {
+					count++;
+				}	
+		   }
+			if (count %2 == 0) {
+				arli.add(al.get(i));
+			}
+			else {
+				count = 0;
+			}
+		}
+		System.out.println(arli);
+	}
+
+        /**
+	 * list() -
+	 * -прочита от конзолата поредица от цели положителни числа,
+	 *поредицата спира когато се въведе празен ред 
+	 */
+	
+	
+	@SuppressWarnings("resource")
+	private static ArrayList<Integer> list(){
+		
+		Scanner scan = new Scanner(System.in);
+		String line = scan.nextLine();
+		if (line.equals(" ")) {
+			scan.close();
+		}
+		else {
+			al.add(Integer.parseInt(line));
+			return list();
+		}
+		
+		return al;
+    }
+}
