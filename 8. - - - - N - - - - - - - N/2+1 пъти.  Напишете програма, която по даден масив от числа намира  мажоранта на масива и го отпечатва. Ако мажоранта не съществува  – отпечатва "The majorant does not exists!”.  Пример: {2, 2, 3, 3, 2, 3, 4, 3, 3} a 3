@@ -1,0 +1,67 @@
+8. Мажорант на масив от N елемента е стойност, която се среща поне N/2+1 пъти.
+ Напишете програма, която по даден масив от числа намира 
+мажоранта на масива и го отпечатва. Ако мажоранта не съществува 
+– отпечатва "The majorant does not exists!”.
+
+Пример: {2, 2, 3, 3, 2, 3, 4, 3, 3} a 3
+------------------------------------------------------------------------------------------------------
+package zad;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+   public class Zad {
+
+
+	   private static ArrayList<Integer> al = new ArrayList<Integer>();
+
+	public static void main(String[] args) {
+
+		   al = list();
+		   Collections.sort(al);
+		   System.out.println(al);
+		   int count = 1;
+		   int bestCount = 0;
+		   int start = 0;
+		   for(int i = 0; i < al.size()-1; i++) {
+			   if(al.get(i) == al.get(i+1)) {
+				   count++;
+			   }
+			   if(count > bestCount) {
+				   bestCount = count;
+				   start = i;
+			   }
+			   else {
+				   count = 1;
+			   }
+		   }
+			   if (bestCount >= (al.size()/2) + 1) {
+				   System.out.println("a " + al.get(start));
+			   }
+			   else {
+				   System.out.println("The majorant does not exists!");
+			   }
+		   }
+	   
+	   
+
+	@SuppressWarnings("resource")
+	private static ArrayList<Integer> list() {
+
+		Scanner scan = new Scanner(System.in);
+		String line = scan.nextLine();
+		if (line.equals(" ")) {
+			scan.close();
+		}
+		else {
+			al.add(Integer.parseInt(line));
+			return list();
+		}
+		return al;
+	}
+	   
+   }
+
+
+
